@@ -3423,7 +3423,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
   $(document).on(EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$1, function (event) {
-    // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+    // preventDefault only for <a> components (which change the URL) not inside the collapsible element
     if (event.currentTarget.tagName === 'A') {
       event.preventDefault();
     }
@@ -4885,7 +4885,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if ($(this.element).css('display') === 'none') {
-        throw new Error('Please use show on visible elements');
+        throw new Error('Please use show on visible components');
       }
 
       var showEvent = $.Event(this.constructor.Event.SHOW);
@@ -6438,7 +6438,7 @@ var support = {};
 var isFunction = function isFunction( obj ) {
 
       // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
+      // In some browsers, typeof returns "function" for HTML <object> components
       // (i.e., `typeof document.createElement( "object" ) === "function"`).
       // We don't want to classify *any* DOM node as a function.
       return typeof obj === "function" && typeof obj.nodeType !== "number";
@@ -6536,7 +6536,7 @@ jQuery.fn = jQuery.prototype = {
 	// Get the whole matched element set as a clean array
 	get: function( num ) {
 
-		// Return all the elements in a clean array
+		// Return all the components in a clean array
 		if ( num == null ) {
 			return slice.call( this );
 		}
@@ -6545,7 +6545,7 @@ jQuery.fn = jQuery.prototype = {
 		return num < 0 ? this[ num + this.length ] : this[ num ];
 	},
 
-	// Take an array of elements and push it onto the stack
+	// Take an array of components and push it onto the stack
 	// (returning the new matched element set)
 	pushStack: function( elems ) {
 
@@ -7149,7 +7149,7 @@ function Sizzle( selector, context, results, seed ) {
 
 							// Support: IE, Opera, Webkit
 							// TODO: identify versions
-							// getElementById can match elements by name instead of ID
+							// getElementById can match components by name instead of ID
 							if ( elem.id === m ) {
 								results.push( elem );
 								return results;
@@ -7163,7 +7163,7 @@ function Sizzle( selector, context, results, seed ) {
 
 						// Support: IE, Opera, Webkit
 						// TODO: identify versions
-						// getElementById can match elements by name instead of ID
+						// getElementById can match components by name instead of ID
 						if ( newContext && ( elem = newContext.getElementById( m ) ) &&
 							contains( context, elem ) &&
 							elem.id === m ) {
@@ -7193,13 +7193,13 @@ function Sizzle( selector, context, results, seed ) {
 				( !rbuggyQSA || !rbuggyQSA.test( selector ) ) &&
 
 				// Support: IE 8 only
-				// Exclude object elements
+				// Exclude object components
 				( nodeType !== 1 || context.nodeName.toLowerCase() !== "object" ) ) {
 
 				newSelector = selector;
 				newContext = context;
 
-				// qSA considers elements outside a scoping root when evaluating child or
+				// qSA considers components outside a scoping root when evaluating child or
 				// descendant combinators, which is not what we want.
 				// In such cases, we work around the behavior by prefixing every selector in the
 				// list with an ID selector referencing the scope context.
@@ -7382,21 +7382,21 @@ function createDisabledPseudo( disabled ) {
 	// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
 	return function( elem ) {
 
-		// Only certain elements can match :enabled or :disabled
+		// Only certain components can match :enabled or :disabled
 		// https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
 		// https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
 		if ( "form" in elem ) {
 
-			// Check for inherited disabledness on relevant non-disabled elements:
-			// * listed form-associated elements in a disabled fieldset
+			// Check for inherited disabledness on relevant non-disabled components:
+			// * listed form-associated components in a disabled fieldset
 			//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
-			// * option elements in a disabled optgroup
+			// * option components in a disabled optgroup
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
-			// All such elements have a "form" property.
+			// All such components have a "form" property.
 			if ( elem.parentNode && elem.disabled === false ) {
 
-				// Option elements defer to a parent optgroup if present
+				// Option components defer to a parent optgroup if present
 				if ( "label" in elem ) {
 					if ( "label" in elem.parentNode ) {
 						return elem.parentNode.disabled === disabled;
@@ -7417,14 +7417,14 @@ function createDisabledPseudo( disabled ) {
 
 			return elem.disabled === disabled;
 
-		// Try to winnow out elements that can't be disabled before trusting the disabled property.
+		// Try to winnow out components that can't be disabled before trusting the disabled property.
 		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
 		// even exist on them, let alone have a boolean value.
 		} else if ( "label" in elem ) {
 			return elem.disabled === disabled;
 		}
 
-		// Remaining elements are neither :enabled nor :disabled
+		// Remaining components are neither :enabled nor :disabled
 		return false;
 	};
 }
@@ -7441,7 +7441,7 @@ function createPositionalPseudo( fn ) {
 				matchIndexes = fn( [], seed.length, argument ),
 				i = matchIndexes.length;
 
-			// Match elements found at the specified indexes
+			// Match components found at the specified indexes
 			while ( i-- ) {
 				if ( seed[ ( j = matchIndexes[ i ] ) ] ) {
 					seed[ j ] = !( matches[ j ] = seed[ j ] );
@@ -7545,7 +7545,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	/* getElement(s)By*
 	---------------------------------------------------------------------- */
 
-	// Check if getElementsByTagName("*") returns only elements
+	// Check if getElementsByTagName("*") returns only components
 	support.getElementsByTagName = assert( function( el ) {
 		el.appendChild( document.createComment( "" ) );
 		return !el.getElementsByTagName( "*" ).length;
@@ -7555,7 +7555,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	support.getElementsByClassName = rnative.test( document.getElementsByClassName );
 
 	// Support: IE<10
-	// Check if getElementById returns elements by name
+	// Check if getElementById returns components by name
 	// The broken getElementById methods don't pick up programmatically-set names,
 	// so use a roundabout getElementsByName test
 	support.getById = assert( function( el ) {
@@ -7710,7 +7710,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 
 			// Support: IE 11+, Edge 15 - 18+
-			// IE 11/Edge don't find elements on a `[name='']` query in some cases.
+			// IE 11/Edge don't find components on a `[name='']` query in some cases.
 			// Adding a temporary attribute to the document before the selection works
 			// around the issue.
 			// Interestingly, IE 10 & older don't seem to have the issue.
@@ -7722,7 +7722,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 					whitespace + "*(?:''|\"\")" );
 			}
 
-			// Webkit/Opera - :checked should return selected option elements
+			// Webkit/Opera - :checked should return selected option components
 			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
 			// IE8 throws error here and will not see later tests
 			if ( !el.querySelectorAll( ":checked" ).length ) {
@@ -7758,7 +7758,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
 			}
 
-			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
+			// FF 3.5 - :enabled/:disabled and hidden components (hidden components are still enabled)
 			// IE8 throws error here and will not see later tests
 			if ( el.querySelectorAll( ":enabled" ).length !== 2 ) {
 				rbuggyQSA.push( ":enabled", ":disabled" );
@@ -8091,7 +8091,7 @@ getText = Sizzle.getText = function( elem ) {
 		}
 	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
 
-		// Use textContent for elements
+		// Use textContent for components
 		// innerText usage removed for consistency of new lines (jQuery #11153)
 		if ( typeof elem.textContent === "string" ) {
 			return elem.textContent;
@@ -8461,7 +8461,7 @@ Expr = Sizzle.selectors = {
 						unmatched = matcher( seed, null, xml, [] ),
 						i = seed.length;
 
-					// Match elements unmatched by `matcher`
+					// Match components unmatched by `matcher`
 					while ( i-- ) {
 						if ( ( elem = unmatched[ i ] ) ) {
 							seed[ i ] = !( matches[ i ] = elem );
@@ -8542,7 +8542,7 @@ Expr = Sizzle.selectors = {
 
 		"checked": function( elem ) {
 
-			// In CSS3, :checked should return both checked and selected elements
+			// In CSS3, :checked should return both checked and selected components
 			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
 			var nodeName = elem.nodeName.toLowerCase();
 			return ( nodeName === "input" && !!elem.checked ) ||
@@ -8770,7 +8770,7 @@ function addCombinator( matcher, combinator, base ) {
 			return false;
 		} :
 
-		// Check against all ancestor/preceding elements
+		// Check against all ancestor/preceding components
 		function( elem, context, xml ) {
 			var oldCache, uniqueCache, outerCache,
 				newCache = [ dirruns, doneName ];
@@ -8799,11 +8799,11 @@ function addCombinator( matcher, combinator, base ) {
 						} else if ( ( oldCache = uniqueCache[ key ] ) &&
 							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
 
-							// Assign to newCache so results back-propagate to previous elements
+							// Assign to newCache so results back-propagate to previous components
 							return ( newCache[ 2 ] = oldCache[ 2 ] );
 						} else {
 
-							// Reuse newcache so results back-propagate to previous elements
+							// Reuse newcache so results back-propagate to previous components
 							uniqueCache[ key ] = newCache;
 
 							// A match means we're done; a fail means we have to keep checking
@@ -8875,7 +8875,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			postMap = [],
 			preexisting = results.length,
 
-			// Get initial elements from seed or context
+			// Get initial components from seed or context
 			elems = seed || multipleContexts(
 				selector || "*",
 				context.nodeType ? [ context ] : context,
@@ -8909,7 +8909,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			temp = condense( matcherOut, postMap );
 			postFilter( temp, [], context, xml );
 
-			// Un-match failing elements by moving them back to matcherIn
+			// Un-match failing components by moving them back to matcherIn
 			i = temp.length;
 			while ( i-- ) {
 				if ( ( elem = temp[ i ] ) ) {
@@ -8935,7 +8935,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 					postFinder( null, ( matcherOut = [] ), temp, xml );
 				}
 
-				// Move matched elements from seed to results to keep them synchronized
+				// Move matched components from seed to results to keep them synchronized
 				i = matcherOut.length;
 				while ( i-- ) {
 					if ( ( elem = matcherOut[ i ] ) &&
@@ -8946,7 +8946,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 				}
 			}
 
-		// Add elements to results, through postFinder if defined
+		// Add components to results, through postFinder if defined
 		} else {
 			matcherOut = condense(
 				matcherOut === results ?
@@ -8969,7 +8969,7 @@ function matcherFromTokens( tokens ) {
 		implicitRelative = leadingRelative || Expr.relative[ " " ],
 		i = leadingRelative ? 1 : 0,
 
-		// The foundational matcher ensures that elements are reachable from top-level context(s)
+		// The foundational matcher ensures that components are reachable from top-level context(s)
 		matchContext = addCombinator( function( elem ) {
 			return elem === checkContext;
 		}, implicitRelative, true ),
@@ -9036,7 +9036,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				setMatched = [],
 				contextBackup = outermostContext,
 
-				// We must always have either seed elements or outermost context
+				// We must always have either seed components or outermost context
 				elems = seed || byElement && Expr.find[ "TAG" ]( "*", outermost ),
 
 				// Use integer dirruns iff this is the outermost matcher
@@ -9052,9 +9052,9 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				outermostContext = context == document || context || outermost;
 			}
 
-			// Add elements passing elementMatchers directly to results
+			// Add components passing elementMatchers directly to results
 			// Support: IE<9, Safari
-			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching components by id
 			for ( ; i !== len && ( elem = elems[ i ] ) != null; i++ ) {
 				if ( byElement && elem ) {
 					j = 0;
@@ -9078,7 +9078,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 					}
 				}
 
-				// Track unmatched elements for set filters
+				// Track unmatched components for set filters
 				if ( bySet ) {
 
 					// They will have gone through all possible matchers
@@ -9093,13 +9093,13 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				}
 			}
 
-			// `i` is now the count of elements visited above, and adding it to `matchedCount`
+			// `i` is now the count of components visited above, and adding it to `matchedCount`
 			// makes the latter nonnegative.
 			matchedCount += i;
 
-			// Apply set filters to unmatched elements
-			// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
-			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+			// Apply set filters to unmatched components
+			// NOTE: This can be skipped if there are no unmatched components (i.e., `matchedCount`
+			// equals `i`), unless we didn't visit _any_ components in the above loop because we have
 			// no element matchers and no seed.
 			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
 			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
@@ -9191,7 +9191,7 @@ compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
  *  selector function built with Sizzle.compile
  * @param {Element} context
  * @param {Array} [results]
- * @param {Array} [seed] A set of elements to match against
+ * @param {Array} [seed] A set of components to match against
  */
 select = Sizzle.select = function( selector, context, results, seed ) {
 	var i, tokens, token, type, find,
@@ -9407,7 +9407,7 @@ function winnow( elements, qualifier, not ) {
 		} );
 	}
 
-	// Arraylike of elements (jQuery, arguments, Array)
+	// Arraylike of components (jQuery, arguments, Array)
 	if ( typeof qualifier !== "string" ) {
 		return jQuery.grep( elements, function( elem ) {
 			return ( indexOf.call( qualifier, elem ) > -1 ) !== not;
@@ -9638,7 +9638,7 @@ jQuery.fn.extend( {
 					if ( cur.nodeType < 11 && ( targets ?
 						targets.index( cur ) > -1 :
 
-						// Don't pass non-elements to Sizzle
+						// Don't pass non-components to Sizzle
 						cur.nodeType === 1 &&
 							jQuery.find.matchesSelector( cur, selectors ) ) ) {
 
@@ -9732,7 +9732,7 @@ jQuery.each( {
 		if ( elem.contentDocument != null &&
 
 			// Support: IE 11+
-			// <object> elements with no `data` attribute has an object
+			// <object> components with no `data` attribute has an object
 			// `contentDocument` with a `null` prototype.
 			getProto( elem.contentDocument ) ) {
 
@@ -10385,7 +10385,7 @@ jQuery.extend( {
 			}
 		}
 
-		// Multiple arguments are aggregated like Promise.all array elements
+		// Multiple arguments are aggregated like Promise.all array components
 		while ( i-- ) {
 			adoptValue( resolveValues[ i ], updateFunc( i ), master.reject );
 		}
@@ -10847,7 +10847,7 @@ jQuery.fn.extend( {
 					while ( i-- ) {
 
 						// Support: IE 11 only
-						// The attrs elements can be null (#14894)
+						// The attrs components can be null (#14894)
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
 							if ( name.indexOf( "data-" ) === 0 ) {
@@ -11087,7 +11087,7 @@ var isHiddenWithinTree = function( elem, el ) {
 
 			// Otherwise, check computed style
 			// Support: Firefox <=43 - 45
-			// Disconnected elements can have computed display: none, so first confirm that elem is
+			// Disconnected components can have computed display: none, so first confirm that elem is
 			// in the document.
 			isAttached( elem ) &&
 
@@ -11193,7 +11193,7 @@ function showHide( elements, show ) {
 		index = 0,
 		length = elements.length;
 
-	// Determine new display value for elements that need to change
+	// Determine new display value for components that need to change
 	for ( ; index < length; index++ ) {
 		elem = elements[ index ];
 		if ( !elem.style ) {
@@ -11203,7 +11203,7 @@ function showHide( elements, show ) {
 		display = elem.style.display;
 		if ( show ) {
 
-			// Since we force visibility upon cascade-hidden elements, an immediate (and slow)
+			// Since we force visibility upon cascade-hidden components, an immediate (and slow)
 			// check is required in this first loop unless we have a nonempty display value (either
 			// inline or about-to-be-restored)
 			if ( display === "none" ) {
@@ -11225,7 +11225,7 @@ function showHide( elements, show ) {
 		}
 	}
 
-	// Set the display of the elements in a second loop to avoid constant reflow
+	// Set the display of the components in a second loop to avoid constant reflow
 	for ( index = 0; index < length; index++ ) {
 		if ( values[ index ] != null ) {
 			elements[ index ].style.display = values[ index ];
@@ -11299,9 +11299,9 @@ var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
 // We have to close these tags to support XHTML (#13200)
 var wrapMap = {
 
-	// XHTML parsers do not magically insert elements in the
+	// XHTML parsers do not magically insert components in the
 	// same way that tag soup parsers do. So we cannot shorten
-	// this by omitting <tbody> or other required elements.
+	// this by omitting <tbody> or other required components.
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
 	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
@@ -11417,7 +11417,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	i = 0;
 	while ( ( elem = nodes[ i++ ] ) ) {
 
-		// Skip elements already in the context collection (trac-4087)
+		// Skip components already in the context collection (trac-4087)
 		if ( selection && jQuery.inArray( elem, selection ) > -1 ) {
 			if ( ignored ) {
 				ignored.push( elem );
@@ -11829,8 +11829,8 @@ jQuery.event = {
 
 			for ( ; cur !== this; cur = cur.parentNode || this ) {
 
-				// Don't check non-elements (#13208)
-				// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
+				// Don't check non-components (#13208)
+				// Don't process clicks on disabled components (#6911, #8165, #11382, #11764)
 				if ( cur.nodeType === 1 && !( event.type === "click" && cur.disabled === true ) ) {
 					matchedHandlers = [];
 					matchedSelectors = {};
@@ -12344,7 +12344,7 @@ function manipulationTarget( elem, content ) {
 	return elem;
 }
 
-// Replace/restore the type attribute of script elements for safe DOM manipulation
+// Replace/restore the type attribute of script components for safe DOM manipulation
 function disableScript( elem ) {
 	elem.type = ( elem.getAttribute( "type" ) !== null ) + "/" + elem.type;
 	return elem;
@@ -12438,7 +12438,7 @@ function domManip( collection, args, callback, ignored ) {
 			fragment = first;
 		}
 
-		// Require either new content or an interest in ignored elements to invoke the callback
+		// Require either new content or an interest in ignored components to invoke the callback
 		if ( first || ignored ) {
 			scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
 			hasScripts = scripts.length;
@@ -12771,8 +12771,8 @@ var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 var getStyles = function( elem ) {
 
 		// Support: IE <=11 only, Firefox <=30 (#15098, #14150)
-		// IE throws on elements created in popups
-		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
+		// IE throws on components created in popups
+		// FF meanwhile throws on frame components through "defaultView.getComputedStyle"
 		var view = elem.ownerDocument.defaultView;
 
 		if ( !view || !view.opener ) {
@@ -12838,7 +12838,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		pixelBoxStylesVal = roundPixelMeasures( divStyle.right ) === 36;
 
 		// Support: IE 9 - 11 only
-		// Detect misreporting of content dimensions for box-sizing:border-box elements
+		// Detect misreporting of content dimensions for box-sizing:border-box components
 		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
 
 		// Support: IE 9 only
@@ -12935,7 +12935,7 @@ function curCSS( elem, name, computed ) {
 		// Support: Firefox 51+
 		// Retrieving style before computed somehow
 		// fixes an issue with getting wrong values
-		// on detached elements
+		// on detached components
 		style = elem.style;
 
 	computed = computed || getStyles( elem );
@@ -13165,7 +13165,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		!support.reliableTrDimensions() && nodeName( elem, "tr" ) ||
 
 		// Fall back to offsetWidth/offsetHeight when value is "auto"
-		// This happens for inline elements with no explicit setting (gh-3571)
+		// This happens for inline components with no explicit setting (gh-3571)
 		val === "auto" ||
 
 		// Support: Android <=4.1 - 4.3 only
@@ -13372,7 +13372,7 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
-				// Certain elements can have dimension info if we invisibly show them
+				// Certain components can have dimension info if we invisibly show them
 				// but it must have a current display style that would benefit
 				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
 
@@ -13773,7 +13773,7 @@ function defaultPrefilter( elem, props, opts ) {
 			}
 		}
 
-		// Animate inline elements as inline-block
+		// Animate inline components as inline-block
 		if ( display === "inline" || display === "inline-block" && restoreDisplay != null ) {
 			if ( jQuery.css( elem, "float" ) === "none" ) {
 
@@ -13820,7 +13820,7 @@ function defaultPrefilter( elem, props, opts ) {
 				dataShow.hidden = !hidden;
 			}
 
-			// Show elements before animating them
+			// Show components before animating them
 			if ( hidden ) {
 				showHide( [ elem ], true );
 			}
@@ -14103,7 +14103,7 @@ jQuery.speed = function( speed, easing, fn ) {
 jQuery.fn.extend( {
 	fadeTo: function( speed, to, easing, callback ) {
 
-		// Show any hidden elements after setting opacity to 0
+		// Show any hidden components after setting opacity to 0
 		return this.filter( isHiddenWithinTree ).css( "opacity", 0 ).show()
 
 			// Animate to the value specified
@@ -15281,7 +15281,7 @@ function buildParams( prefix, obj, traditional, add ) {
 	}
 }
 
-// Serialize an array of form elements or a set of
+// Serialize an array of form components or a set of
 // key/values into a query string
 jQuery.param = function( a, traditional ) {
 	var prefix,
@@ -15301,10 +15301,10 @@ jQuery.param = function( a, traditional ) {
 		return "";
 	}
 
-	// If an array was passed in, assume that it is an array of form elements.
+	// If an array was passed in, assume that it is an array of form components.
 	if ( Array.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
 
-		// Serialize the form elements
+		// Serialize the form components
 		jQuery.each( a, function() {
 			add( this.name, this.value );
 		} );
@@ -15329,7 +15329,7 @@ jQuery.fn.extend( {
 	serializeArray: function() {
 		return this.map( function() {
 
-			// Can add propHook for "elements" to filter or add form elements
+			// Can add propHook for "components" to filter or add form components
 			var elements = jQuery.prop( this, "elements" );
 			return elements ? jQuery.makeArray( elements ) : this;
 		} )
@@ -16247,7 +16247,7 @@ jQuery.fn.extend( {
 				html = html.call( this[ 0 ] );
 			}
 
-			// The elements to wrap the target around
+			// The components to wrap the target around
 			wrap = jQuery( html, this[ 0 ].ownerDocument ).eq( 0 ).clone( true );
 
 			if ( this[ 0 ].parentNode ) {
@@ -16677,7 +16677,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 			context = document.implementation.createHTMLDocument( "" );
 
 			// Set the base href for the created document
-			// so any parsed elements with URLs
+			// so any parsed components with URLs
 			// are based on the document's URL (gh-2965)
 			base = context.createElement( "base" );
 			base.href = document.location.href;
@@ -16730,7 +16730,7 @@ jQuery.fn.load = function( url, params, callback ) {
 		type = "POST";
 	}
 
-	// If we have elements to modify, make the request
+	// If we have components to modify, make the request
 	if ( self.length > 0 ) {
 		jQuery.ajax( {
 			url: url,
@@ -16748,7 +16748,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			self.html( selector ?
 
-				// If a selector was specified, locate the right elements in a dummy div
+				// If a selector was specified, locate the right components in a dummy div
 				// Exclude scripts to avoid IE 'Permission Denied' errors
 				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
@@ -16859,7 +16859,7 @@ jQuery.fn.extend( {
 			return;
 		}
 
-		// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
+		// Return zeros for disconnected and hidden (display: none) components (gh-2310)
 		// Support: IE <=11 only
 		// Running getBoundingClientRect on a
 		// disconnected node in IE throws an error
@@ -16887,7 +16887,7 @@ jQuery.fn.extend( {
 			elem = this[ 0 ],
 			parentOffset = { top: 0, left: 0 };
 
-		// position:fixed elements are offset from the viewport, which itself always has zero offset
+		// position:fixed components are offset from the viewport, which itself always has zero offset
 		if ( jQuery.css( elem, "position" ) === "fixed" ) {
 
 			// Assume position:fixed implies availability of getBoundingClientRect
@@ -17792,7 +17792,7 @@ return jQuery;
    * @private
    * @param {Array} [array] The array to iterate over.
    * @param {Function} predicate The function invoked per iteration.
-   * @returns {boolean} Returns `true` if all elements pass the predicate check,
+   * @returns {boolean} Returns `true` if all components pass the predicate check,
    *  else `false`.
    */
   function arrayEvery(array, predicate) {
@@ -17887,7 +17887,7 @@ return jQuery;
   }
 
   /**
-   * Appends the elements of `values` to `array`.
+   * Appends the components of `values` to `array`.
    *
    * @private
    * @param {Array} array The array to modify.
@@ -18445,7 +18445,7 @@ return jQuery;
   }
 
   /**
-   * Replaces all `placeholder` elements in `array` with an internal placeholder
+   * Replaces all `placeholder` components in `array` with an internal placeholder
    * and returns an array of their indexes.
    *
    * @private
@@ -19669,8 +19669,8 @@ return jQuery;
      *
      * @private
      * @param {Array} array The array to sample.
-     * @param {number} n The number of elements to sample.
-     * @returns {Array} Returns the random elements.
+     * @param {number} n The number of components to sample.
+     * @returns {Array} Returns the random components.
      */
     function arraySampleSize(array, n) {
       return shuffleSelf(copyArray(array), baseClamp(n, 0, array.length));
@@ -19740,7 +19740,7 @@ return jQuery;
     }
 
     /**
-     * Aggregates elements of `collection` on `accumulator` with keys transformed
+     * Aggregates components of `collection` on `accumulator` with keys transformed
      * by `iteratee` and values set by `setter`.
      *
      * @private
@@ -19811,7 +19811,7 @@ return jQuery;
      * @private
      * @param {Object} object The object to iterate over.
      * @param {string[]} paths The property paths to pick.
-     * @returns {Array} Returns the picked elements.
+     * @returns {Array} Returns the picked components.
      */
     function baseAt(object, paths) {
       var index = -1,
@@ -20077,7 +20077,7 @@ return jQuery;
      * @private
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} predicate The function invoked per iteration.
-     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+     * @returns {boolean} Returns `true` if all components pass the predicate check,
      *  else `false`
      */
     function baseEvery(collection, predicate) {
@@ -21085,11 +21085,11 @@ return jQuery;
 
     /**
      * The base implementation of `_.pullAt` without support for individual
-     * indexes or capturing the removed elements.
+     * indexes or capturing the removed components.
      *
      * @private
      * @param {Array} array The array to modify.
-     * @param {number[]} indexes The indexes of elements to remove.
+     * @param {number[]} indexes The indexes of components to remove.
      * @returns {Array} Returns `array`.
      */
     function basePullAt(array, indexes) {
@@ -21202,8 +21202,8 @@ return jQuery;
      *
      * @private
      * @param {Array|Object} collection The collection to sample.
-     * @param {number} n The number of elements to sample.
-     * @returns {Array} Returns the random elements.
+     * @param {number} n The number of components to sample.
+     * @returns {Array} Returns the random components.
      */
     function baseSampleSize(collection, n) {
       var array = values(collection);
@@ -21598,7 +21598,7 @@ return jQuery;
      * @private
      * @param {Array} array The array to query.
      * @param {Function} predicate The function invoked per iteration.
-     * @param {boolean} [isDrop] Specify dropping elements instead of taking them.
+     * @param {boolean} [isDrop] Specify dropping components instead of taking them.
      * @param {boolean} [fromRight] Specify iterating from right to left.
      * @returns {Array} Returns the slice of `array`.
      */
@@ -24083,9 +24083,9 @@ return jQuery;
     /*------------------------------------------------------------------------*/
 
     /**
-     * Creates an array of elements split into groups the length of `size`.
+     * Creates an array of components split into groups the length of `size`.
      * If `array` can't be split evenly, the final chunk will be the remaining
-     * elements.
+     * components.
      *
      * @static
      * @memberOf _
@@ -24255,7 +24255,7 @@ return jQuery;
 
     /**
      * This method is like `_.difference` except that it accepts `comparator`
-     * which is invoked to compare elements of `array` to `values`. The order and
+     * which is invoked to compare components of `array` to `values`. The order and
      * references of result values are determined by the first array. The comparator
      * is invoked with two arguments: (arrVal, othVal).
      *
@@ -24287,14 +24287,14 @@ return jQuery;
     });
 
     /**
-     * Creates a slice of `array` with `n` elements dropped from the beginning.
+     * Creates a slice of `array` with `n` components dropped from the beginning.
      *
      * @static
      * @memberOf _
      * @since 0.5.0
      * @category Array
      * @param {Array} array The array to query.
-     * @param {number} [n=1] The number of elements to drop.
+     * @param {number} [n=1] The number of components to drop.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -24321,14 +24321,14 @@ return jQuery;
     }
 
     /**
-     * Creates a slice of `array` with `n` elements dropped from the end.
+     * Creates a slice of `array` with `n` components dropped from the end.
      *
      * @static
      * @memberOf _
      * @since 3.0.0
      * @category Array
      * @param {Array} array The array to query.
-     * @param {number} [n=1] The number of elements to drop.
+     * @param {number} [n=1] The number of components to drop.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -24356,7 +24356,7 @@ return jQuery;
     }
 
     /**
-     * Creates a slice of `array` excluding elements dropped from the end.
+     * Creates a slice of `array` excluding components dropped from the end.
      * Elements are dropped until `predicate` returns falsey. The predicate is
      * invoked with three arguments: (value, index, array).
      *
@@ -24397,7 +24397,7 @@ return jQuery;
     }
 
     /**
-     * Creates a slice of `array` excluding elements dropped from the beginning.
+     * Creates a slice of `array` excluding components dropped from the beginning.
      * Elements are dropped until `predicate` returns falsey. The predicate is
      * invoked with three arguments: (value, index, array).
      *
@@ -24438,7 +24438,7 @@ return jQuery;
     }
 
     /**
-     * Fills elements of `array` with `value` from `start` up to, but not
+     * Fills components of `array` with `value` from `start` up to, but not
      * including, `end`.
      *
      * **Note:** This method mutates `array`.
@@ -24526,7 +24526,7 @@ return jQuery;
     }
 
     /**
-     * This method is like `_.findIndex` except that it iterates over elements
+     * This method is like `_.findIndex` except that it iterates over components
      * of `collection` from right to left.
      *
      * @static
@@ -24808,7 +24808,7 @@ return jQuery;
 
     /**
      * This method is like `_.intersection` except that it accepts `comparator`
-     * which is invoked to compare elements of `arrays`. The order and references
+     * which is invoked to compare components of `arrays`. The order and references
      * of result values are determined by the first array. The comparator is
      * invoked with two arguments: (arrVal, othVal).
      *
@@ -24841,7 +24841,7 @@ return jQuery;
     });
 
     /**
-     * Converts all elements in `array` into a string separated by `separator`.
+     * Converts all components in `array` into a string separated by `separator`.
      *
      * @static
      * @memberOf _
@@ -24879,7 +24879,7 @@ return jQuery;
     }
 
     /**
-     * This method is like `_.indexOf` except that it iterates over elements of
+     * This method is like `_.indexOf` except that it iterates over components of
      * `array` from right to left.
      *
      * @static
@@ -24945,7 +24945,7 @@ return jQuery;
      * for equality comparisons.
      *
      * **Note:** Unlike `_.without`, this method mutates `array`. Use `_.remove`
-     * to remove elements from an array by predicate.
+     * to remove components from an array by predicate.
      *
      * @static
      * @memberOf _
@@ -25021,7 +25021,7 @@ return jQuery;
 
     /**
      * This method is like `_.pullAll` except that it accepts `comparator` which
-     * is invoked to compare elements of `array` to `values`. The comparator is
+     * is invoked to compare components of `array` to `values`. The comparator is
      * invoked with two arguments: (arrVal, othVal).
      *
      * **Note:** Unlike `_.differenceWith`, this method mutates `array`.
@@ -25049,8 +25049,8 @@ return jQuery;
     }
 
     /**
-     * Removes elements from `array` corresponding to `indexes` and returns an
-     * array of removed elements.
+     * Removes components from `array` corresponding to `indexes` and returns an
+     * array of removed components.
      *
      * **Note:** Unlike `_.at`, this method mutates `array`.
      *
@@ -25059,8 +25059,8 @@ return jQuery;
      * @since 3.0.0
      * @category Array
      * @param {Array} array The array to modify.
-     * @param {...(number|number[])} [indexes] The indexes of elements to remove.
-     * @returns {Array} Returns the new array of removed elements.
+     * @param {...(number|number[])} [indexes] The indexes of components to remove.
+     * @returns {Array} Returns the new array of removed components.
      * @example
      *
      * var array = ['a', 'b', 'c', 'd'];
@@ -25084,12 +25084,12 @@ return jQuery;
     });
 
     /**
-     * Removes all elements from `array` that `predicate` returns truthy for
-     * and returns an array of the removed elements. The predicate is invoked
+     * Removes all components from `array` that `predicate` returns truthy for
+     * and returns an array of the removed components. The predicate is invoked
      * with three arguments: (value, index, array).
      *
      * **Note:** Unlike `_.filter`, this method mutates `array`. Use `_.pull`
-     * to pull elements from an array by value.
+     * to pull components from an array by value.
      *
      * @static
      * @memberOf _
@@ -25097,7 +25097,7 @@ return jQuery;
      * @category Array
      * @param {Array} array The array to modify.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
-     * @returns {Array} Returns the new array of removed elements.
+     * @returns {Array} Returns the new array of removed components.
      * @example
      *
      * var array = [1, 2, 3, 4];
@@ -25409,14 +25409,14 @@ return jQuery;
     }
 
     /**
-     * Creates a slice of `array` with `n` elements taken from the beginning.
+     * Creates a slice of `array` with `n` components taken from the beginning.
      *
      * @static
      * @memberOf _
      * @since 0.1.0
      * @category Array
      * @param {Array} array The array to query.
-     * @param {number} [n=1] The number of elements to take.
+     * @param {number} [n=1] The number of components to take.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -25442,14 +25442,14 @@ return jQuery;
     }
 
     /**
-     * Creates a slice of `array` with `n` elements taken from the end.
+     * Creates a slice of `array` with `n` components taken from the end.
      *
      * @static
      * @memberOf _
      * @since 3.0.0
      * @category Array
      * @param {Array} array The array to query.
-     * @param {number} [n=1] The number of elements to take.
+     * @param {number} [n=1] The number of components to take.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -25477,7 +25477,7 @@ return jQuery;
     }
 
     /**
-     * Creates a slice of `array` with elements taken from the end. Elements are
+     * Creates a slice of `array` with components taken from the end. Elements are
      * taken until `predicate` returns falsey. The predicate is invoked with
      * three arguments: (value, index, array).
      *
@@ -25518,7 +25518,7 @@ return jQuery;
     }
 
     /**
-     * Creates a slice of `array` with elements taken from the beginning. Elements
+     * Creates a slice of `array` with components taken from the beginning. Elements
      * are taken until `predicate` returns falsey. The predicate is invoked with
      * three arguments: (value, index, array).
      *
@@ -25611,7 +25611,7 @@ return jQuery;
 
     /**
      * This method is like `_.union` except that it accepts `comparator` which
-     * is invoked to compare elements of `arrays`. Result values are chosen from
+     * is invoked to compare components of `arrays`. Result values are chosen from
      * the first array in which the value occurs. The comparator is invoked
      * with two arguments: (arrVal, othVal).
      *
@@ -25687,7 +25687,7 @@ return jQuery;
 
     /**
      * This method is like `_.uniq` except that it accepts `comparator` which
-     * is invoked to compare elements of `array`. The order of result values is
+     * is invoked to compare components of `array`. The order of result values is
      * determined by the order they occur in the array.The comparator is invoked
      * with two arguments: (arrVal, othVal).
      *
@@ -25712,15 +25712,15 @@ return jQuery;
 
     /**
      * This method is like `_.zip` except that it accepts an array of grouped
-     * elements and creates an array regrouping the elements to their pre-zip
+     * components and creates an array regrouping the components to their pre-zip
      * configuration.
      *
      * @static
      * @memberOf _
      * @since 1.2.0
      * @category Array
-     * @param {Array} array The array of grouped elements to process.
-     * @returns {Array} Returns the new array of regrouped elements.
+     * @param {Array} array The array of grouped components to process.
+     * @returns {Array} Returns the new array of regrouped components.
      * @example
      *
      * var zipped = _.zip(['a', 'b'], [1, 2], [true, false]);
@@ -25748,16 +25748,16 @@ return jQuery;
     /**
      * This method is like `_.unzip` except that it accepts `iteratee` to specify
      * how regrouped values should be combined. The iteratee is invoked with the
-     * elements of each group: (...group).
+     * components of each group: (...group).
      *
      * @static
      * @memberOf _
      * @since 3.8.0
      * @category Array
-     * @param {Array} array The array of grouped elements to process.
+     * @param {Array} array The array of grouped components to process.
      * @param {Function} [iteratee=_.identity] The function to combine
      *  regrouped values.
-     * @returns {Array} Returns the new array of regrouped elements.
+     * @returns {Array} Returns the new array of regrouped components.
      * @example
      *
      * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
@@ -25860,7 +25860,7 @@ return jQuery;
 
     /**
      * This method is like `_.xor` except that it accepts `comparator` which is
-     * invoked to compare elements of `arrays`. The order of result values is
+     * invoked to compare components of `arrays`. The order of result values is
      * determined by the order they occur in the arrays. The comparator is invoked
      * with two arguments: (arrVal, othVal).
      *
@@ -25886,16 +25886,16 @@ return jQuery;
     });
 
     /**
-     * Creates an array of grouped elements, the first of which contains the
-     * first elements of the given arrays, the second of which contains the
-     * second elements of the given arrays, and so on.
+     * Creates an array of grouped components, the first of which contains the
+     * first components of the given arrays, the second of which contains the
+     * second components of the given arrays, and so on.
      *
      * @static
      * @memberOf _
      * @since 0.1.0
      * @category Array
      * @param {...Array} [arrays] The arrays to process.
-     * @returns {Array} Returns the new array of grouped elements.
+     * @returns {Array} Returns the new array of grouped components.
      * @example
      *
      * _.zip(['a', 'b'], [1, 2], [true, false]);
@@ -25945,7 +25945,7 @@ return jQuery;
     /**
      * This method is like `_.zip` except that it accepts `iteratee` to specify
      * how grouped values should be combined. The iteratee is invoked with the
-     * elements of each group: (...group).
+     * components of each group: (...group).
      *
      * @static
      * @memberOf _
@@ -25954,7 +25954,7 @@ return jQuery;
      * @param {...Array} [arrays] The arrays to process.
      * @param {Function} [iteratee=_.identity] The function to combine
      *  grouped values.
-     * @returns {Array} Returns the new array of grouped elements.
+     * @returns {Array} Returns the new array of grouped components.
      * @example
      *
      * _.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
@@ -26350,14 +26350,14 @@ return jQuery;
     });
 
     /**
-     * Checks if `predicate` returns truthy for **all** elements of `collection`.
+     * Checks if `predicate` returns truthy for **all** components of `collection`.
      * Iteration is stopped once `predicate` returns falsey. The predicate is
      * invoked with three arguments: (value, index|key, collection).
      *
      * **Note:** This method returns `true` for
      * [empty collections](https://en.wikipedia.org/wiki/Empty_set) because
      * [everything is true](https://en.wikipedia.org/wiki/Vacuous_truth) of
-     * elements of empty collections.
+     * components of empty collections.
      *
      * @static
      * @memberOf _
@@ -26366,7 +26366,7 @@ return jQuery;
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
-     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+     * @returns {boolean} Returns `true` if all components pass the predicate check,
      *  else `false`.
      * @example
      *
@@ -26399,7 +26399,7 @@ return jQuery;
     }
 
     /**
-     * Iterates over elements of `collection`, returning an array of all elements
+     * Iterates over components of `collection`, returning an array of all components
      * `predicate` returns truthy for. The predicate is invoked with three
      * arguments: (value, index|key, collection).
      *
@@ -26445,7 +26445,7 @@ return jQuery;
     }
 
     /**
-     * Iterates over elements of `collection`, returning the first element
+     * Iterates over components of `collection`, returning the first element
      * `predicate` returns truthy for. The predicate is invoked with three
      * arguments: (value, index|key, collection).
      *
@@ -26483,7 +26483,7 @@ return jQuery;
     var find = createFind(findIndex);
 
     /**
-     * This method is like `_.find` except that it iterates over elements of
+     * This method is like `_.find` except that it iterates over components of
      * `collection` from right to left.
      *
      * @static
@@ -26579,7 +26579,7 @@ return jQuery;
     }
 
     /**
-     * Iterates over elements of `collection` and invokes `iteratee` for each element.
+     * Iterates over components of `collection` and invokes `iteratee` for each element.
      * The iteratee is invoked with three arguments: (value, index|key, collection).
      * Iteratee functions may exit iteration early by explicitly returning `false`.
      *
@@ -26614,7 +26614,7 @@ return jQuery;
     }
 
     /**
-     * This method is like `_.forEach` except that it iterates over elements of
+     * This method is like `_.forEach` except that it iterates over components of
      * `collection` from right to left.
      *
      * @static
@@ -26642,7 +26642,7 @@ return jQuery;
      * Creates an object composed of keys generated from the results of running
      * each element of `collection` thru `iteratee`. The order of grouped values
      * is determined by the order they occur in `collection`. The corresponding
-     * value of each key is an array of elements responsible for generating the
+     * value of each key is an array of components responsible for generating the
      * key. The iteratee is invoked with one argument: (value).
      *
      * @static
@@ -26869,9 +26869,9 @@ return jQuery;
     }
 
     /**
-     * Creates an array of elements split into two groups, the first of which
-     * contains elements `predicate` returns truthy for, the second of which
-     * contains elements `predicate` returns falsey for. The predicate is
+     * Creates an array of components split into two groups, the first of which
+     * contains components `predicate` returns truthy for, the second of which
+     * contains components `predicate` returns falsey for. The predicate is
      * invoked with one argument: (value).
      *
      * @static
@@ -26880,7 +26880,7 @@ return jQuery;
      * @category Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
-     * @returns {Array} Returns the array of grouped elements.
+     * @returns {Array} Returns the array of grouped components.
      * @example
      *
      * var users = [
@@ -26953,7 +26953,7 @@ return jQuery;
     }
 
     /**
-     * This method is like `_.reduce` except that it iterates over elements of
+     * This method is like `_.reduce` except that it iterates over components of
      * `collection` from right to left.
      *
      * @static
@@ -26982,7 +26982,7 @@ return jQuery;
     }
 
     /**
-     * The opposite of `_.filter`; this method returns the elements of `collection`
+     * The opposite of `_.filter`; this method returns the components of `collection`
      * that `predicate` does **not** return truthy for.
      *
      * @static
@@ -27040,7 +27040,7 @@ return jQuery;
     }
 
     /**
-     * Gets `n` random elements at unique keys from `collection` up to the
+     * Gets `n` random components at unique keys from `collection` up to the
      * size of `collection`.
      *
      * @static
@@ -27048,9 +27048,9 @@ return jQuery;
      * @since 4.0.0
      * @category Collection
      * @param {Array|Object} collection The collection to sample.
-     * @param {number} [n=1] The number of elements to sample.
+     * @param {number} [n=1] The number of components to sample.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
-     * @returns {Array} Returns the random elements.
+     * @returns {Array} Returns the random components.
      * @example
      *
      * _.sampleSize([1, 2, 3], 2);
@@ -27169,10 +27169,10 @@ return jQuery;
     }
 
     /**
-     * Creates an array of elements, sorted in ascending order by the results of
+     * Creates an array of components, sorted in ascending order by the results of
      * running each element in a collection thru each iteratee. This method
      * performs a stable sort, that is, it preserves the original sort order of
-     * equal elements. The iteratees are invoked with one argument: (value).
+     * equal components. The iteratees are invoked with one argument: (value).
      *
      * @static
      * @memberOf _
@@ -30149,7 +30149,7 @@ return jQuery;
     }
 
     /**
-     * This method is like `_.findKey` except that it iterates over elements of
+     * This method is like `_.findKey` except that it iterates over components of
      * a collection in the opposite order.
      *
      * @static
@@ -32510,12 +32510,12 @@ return jQuery;
      * @example
      *
      * // Avoid throwing errors for invalid selectors.
-     * var elements = _.attempt(function(selector) {
+     * var components = _.attempt(function(selector) {
      *   return document.querySelectorAll(selector);
      * }, '>_>');
      *
-     * if (_.isError(elements)) {
-     *   elements = [];
+     * if (_.isError(components)) {
+     *   components = [];
      * }
      */
     var attempt = baseRest(function(func, args) {
@@ -32759,7 +32759,7 @@ return jQuery;
      * Creates a function that invokes `func` with the arguments of the created
      * function. If `func` is a property name, the created function returns the
      * property value for a given element. If `func` is an array or object, the
-     * created function returns `true` for elements that contain the equivalent
+     * created function returns `true` for components that contain the equivalent
      * source properties, otherwise it returns `false`.
      *
      * @static
@@ -34411,7 +34411,7 @@ return jQuery;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/**!
- * @fileOverview Kickass library to create and place poppers near their reference elements.
+ * @fileOverview Kickass library to create and place poppers near their reference components.
  * @version 1.16.1
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
@@ -34611,7 +34611,7 @@ function getOffsetParent(element) {
 
   // NOTE: 1 DOM access here
   var offsetParent = element.offsetParent || null;
-  // Skip hidden elements which don't have an offsetParent
+  // Skip hidden components which don't have an offsetParent
   while (offsetParent === noOffsetParent && element.nextElementSibling) {
     offsetParent = (element = element.nextElementSibling).offsetParent;
   }
@@ -34664,7 +34664,7 @@ function getRoot(node) {
  * @returns {Element} common offset parent
  */
 function findCommonOffsetParent(element1, element2) {
-  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  // This check is needed to avoid errors in case one of the components isn't defined for any reason
   if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
     return document.documentElement;
   }
@@ -35008,7 +35008,7 @@ function isFixed(element) {
  */
 
 function getFixedPositionOffsetParent(element) {
-  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  // This check is needed to avoid errors in case one of the components isn't defined for any reason
   if (!element || !element.parentElement || isIE()) {
     return document.documentElement;
   }
@@ -35068,7 +35068,7 @@ function getBoundaries(popper, reference, padding, boundariesElement) {
       boundaries.left += offsets.left - offsets.marginLeft;
       boundaries.right = width + offsets.left;
     } else {
-      // for all the other DOM elements, this one is good
+      // for all the other DOM components, this one is good
       boundaries = offsets;
     }
   }
@@ -36785,7 +36785,7 @@ var modifiers = {
  * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
  * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
  * @property {Object} data.boundaries Offsets of the popper boundaries
- * @property {Object} data.offsets The measurements of popper, reference and arrow elements
+ * @property {Object} data.offsets The measurements of popper, reference and arrow components
  * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
  * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
  * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
@@ -36903,7 +36903,7 @@ var Popper = function () {
       scrollParents: []
     };
 
-    // get reference and popper elements (allow jQuery wrappers)
+    // get reference and popper components (allow jQuery wrappers)
     this.reference = reference && reference.jquery ? reference[0] : reference;
     this.popper = popper && popper.jquery ? popper[0] : popper;
 
@@ -38082,7 +38082,7 @@ var config = ({
   warnHandler: null,
 
   /**
-   * Ignore certain custom elements
+   * Ignore certain custom components
    */
   ignoredElements: [],
 
@@ -38803,7 +38803,7 @@ function del (target, key) {
 }
 
 /**
- * Collect dependencies on array elements when the array is touched, since
+ * Collect dependencies on array components when the array is touched, since
  * we cannot intercept array element access like property getters.
  */
 function dependArray (value) {
@@ -39082,7 +39082,7 @@ function validateComponentName (name) {
   }
   if (isBuiltInTag(name) || config.isReservedTag(name)) {
     warn(
-      'Do not use built-in or reserved HTML elements as component ' +
+      'Do not use built-in or reserved HTML components as component ' +
       'id: ' + name
     );
   }
@@ -41076,7 +41076,7 @@ function _createElement (
     var Ctor;
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
-      // platform built-in elements
+      // platform built-in components
       if (isDef(data) && isDef(data.nativeOn)) {
         warn(
           ("The .native modifier for v-on is only valid on components but it was used on <" + tag + ">."),
@@ -41091,7 +41091,7 @@ function _createElement (
       // component
       vnode = createComponent(Ctor, data, context, children, tag);
     } else {
-      // unknown or unlisted namespaced elements
+      // unknown or unlisted namespaced components
       // check at runtime because it may get assigned a namespace when its
       // parent normalizes children
       vnode = new VNode(
@@ -43264,8 +43264,8 @@ var isHTMLTag = makeMap(
   'content,element,shadow,template,blockquote,iframe,tfoot'
 );
 
-// this map is intentionally selective, only covering SVG elements that may
-// contain child elements.
+// this map is intentionally selective, only covering SVG components that may
+// contain child components.
 var isSVG = makeMap(
   'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,' +
   'foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
@@ -43284,7 +43284,7 @@ function getTagNamespace (tag) {
     return 'svg'
   }
   // basic support for MathML
-  // note it doesn't support other MathML elements being component roots
+  // note it doesn't support other MathML components being component roots
   if (tag === 'math') {
     return 'math'
   }
@@ -43835,7 +43835,7 @@ function createPatchFunction (backend) {
     var oldKeyToIdx, idxInOld, vnodeToMove, refElm;
 
     // removeOnly is a special flag used only by <transition-group>
-    // to ensure removed elements stay in correct relative positions
+    // to ensure removed components stay in correct relative positions
     // during leaving transitions
     var canMove = !removeOnly;
 
@@ -44154,7 +44154,7 @@ function createPatchFunction (backend) {
               warn(
                 'The client-side rendered virtual DOM tree is not matching ' +
                 'server-rendered content. This is likely caused by incorrect ' +
-                'HTML markup, for example nesting block-level elements inside ' +
+                'HTML markup, for example nesting block-level components inside ' +
                 '<p>, or missing <tbody>. Bailing hydration and performing ' +
                 'full client-side render.'
               );
@@ -45299,7 +45299,7 @@ function updateDOMProps (oldVnode, vnode) {
         elm.value = strCur;
       }
     } else if (key === 'innerHTML' && isSVG(elm.tagName) && isUndef(elm.innerHTML)) {
-      // IE doesn't support innerHTML for SVG elements
+      // IE doesn't support innerHTML for SVG components
       svgContainer = svgContainer || document.createElement('div');
       svgContainer.innerHTML = "<svg>" + cur + "</svg>";
       var svg = svgContainer.firstChild;
@@ -45532,7 +45532,7 @@ var whitespaceRE = /\s+/;
 
 /**
  * Add class with compatibility for SVG since classList is not supported on
- * SVG elements in IE
+ * SVG components in IE
  */
 function addClass (el, cls) {
   /* istanbul ignore if */
@@ -45557,7 +45557,7 @@ function addClass (el, cls) {
 
 /**
  * Remove class with compatibility for SVG since classList is not supported on
- * SVG elements in IE
+ * SVG components in IE
  */
 function removeClass (el, cls) {
   /* istanbul ignore if */
@@ -46411,7 +46411,7 @@ var Transition = {
       return
     }
 
-    // warn multiple elements
+    // warn multiple components
     if (children.length > 1) {
       warn(
         '<transition> can only be used on a single element. Use ' +
@@ -47167,7 +47167,7 @@ function parseHTML (html, options) {
     }
 
     if (pos >= 0) {
-      // Close all the open elements, up the stack
+      // Close all the open components, up the stack
       for (var i = stack.length - 1; i >= pos; i--) {
         if (i > pos || !tagName &&
           options.warn
@@ -47182,7 +47182,7 @@ function parseHTML (html, options) {
         }
       }
 
-      // Remove the open elements from the stack
+      // Remove the open components from the stack
       stack.length = pos;
       lastTag = pos && stack[pos - 1].tag;
     } else if (lowerCasedTagName === 'br') {
@@ -47295,7 +47295,7 @@ function parse (
     }
     // tree management
     if (!stack.length && element !== root) {
-      // allow root elements with v-if, v-else-if and v-else
+      // allow root components with v-if, v-else-if and v-else
       if (root.if && (element.elseif || element.else)) {
         {
           checkRootConstraints(element);
@@ -47307,7 +47307,7 @@ function parse (
       } else {
         warnOnce(
           "Component template should contain exactly one root element. " +
-          "If you are using v-if on multiple elements, " +
+          "If you are using v-if on multiple components, " +
           "use v-else-if to chain them instead.",
           { start: element.start }
         );
@@ -47373,7 +47373,7 @@ function parse (
     if (el.attrsMap.hasOwnProperty('v-for')) {
       warnOnce(
         'Cannot use v-for on stateful component root element because ' +
-        'it renders multiple elements.',
+        'it renders multiple components.',
         el.rawAttrsMap['v-for']
       );
     }
@@ -47635,7 +47635,7 @@ function processKey (el) {
     {
       if (el.tag === 'template') {
         warn$2(
-          "<template> cannot be keyed. Place the key on real elements instead.",
+          "<template> cannot be keyed. Place the key on real components instead.",
           getRawBindingAttr(el, 'key')
         );
       }
@@ -47778,7 +47778,7 @@ function processSlotContent (el) {
       warn$2(
         "the \"scope\" attribute for scoped slots have been deprecated and " +
         "replaced by \"slot-scope\" since 2.5. The new \"slot-scope\" attribute " +
-        "can also be used on plain elements in addition to <template> to " +
+        "can also be used on plain components in addition to <template> to " +
         "denote scoped slots.",
         el.rawAttrsMap['scope'],
         true
@@ -47914,7 +47914,7 @@ function processSlotOutlet (el) {
     if (el.key) {
       warn$2(
         "`key` does not work on <slot> because slots are abstract outlets " +
-        "and can possibly expand into multiple elements. " +
+        "and can possibly expand into multiple components. " +
         "Use the key on a wrapping element instead.",
         getRawBindingAttr(el, 'key')
       );
@@ -48651,7 +48651,7 @@ function genElement (el, state) {
 // hoist static sub-trees out
 function genStatic (el, state) {
   el.staticProcessed = true;
-  // Some elements (templates) need to behave differently inside of a v-pre
+  // Some components (templates) need to behave differently inside of a v-pre
   // node.  All pre nodes are static roots, so we can use this as a location to
   // wrap a state change and reset it upon exiting the pre node.
   var originalPreState = state.pre;
@@ -49548,7 +49548,7 @@ Vue.prototype.$mount = function (
   /* istanbul ignore if */
   if (el === document.body || el === document.documentElement) {
     warn(
-      "Do not mount Vue to <html> or <body> - mount to normal elements instead."
+      "Do not mount Vue to <html> or <body> - mount to normal components instead."
     );
     return this
   }
@@ -49609,8 +49609,8 @@ Vue.prototype.$mount = function (
 };
 
 /**
- * Get outerHTML of elements, taking care
- * of SVG elements in IE as well.
+ * Get outerHTML of components, taking care
+ * of SVG components in IE as well.
  */
 function getOuterHTML (el) {
   if (el.outerHTML) {

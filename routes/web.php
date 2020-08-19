@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::delete('/admin/messages/{message}', 'Admin\MessageController@destroy')
+    ->name('delete.message');
+
+Route::patch('/admin/users/{user}', 'Admin\UserController@ban')
+    ->name('ban.user');
+
+Route::get('/users/{user}', 'UserController@show')->name('show.user');
+
+Route::post('/messages', 'MessageController@store')->name('message.store');

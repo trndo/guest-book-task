@@ -15,6 +15,7 @@ class AddUserMessageRelationToMessagesTable extends Migration
     {
         Schema::table('messages', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
+
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
         });
