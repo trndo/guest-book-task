@@ -17,12 +17,16 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::delete('/admin/messages/{message}', 'Admin\MessageController@destroy')
-    ->name('delete.message');
+Route::middleware(['check.is_admin'])->namespace('Admin')->prefix('admin')
+    ->group(function () {
+        Route::delete('messages/{message}', 'MessageController@destroy')
+            ->name('admin.message.destroy');
 
-Route::patch('/admin/users/{user}', 'Admin\UserController@ban')
-    ->name('ban.user');
+        Route::patch('users/{user}', 'UserController@toggleBan')
+            ->name('admin.user.toggleBan');
+});
 
-Route::get('/users/{user}', 'UserController@show')->name('show.user');
+Route::get('/users/{user}', 'UserController@show')->name('user.show');
 
-Route::post('/messages', 'MessageController@store')->name('message.store');
+Route::middleware(['auth','check.is_banned'])->post('/messages', 'MessageController@store')
+    ->name('message.store');

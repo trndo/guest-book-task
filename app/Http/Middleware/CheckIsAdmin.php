@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Providers\RouteServiceProvider;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class CheckIsAdmin
 {
@@ -16,8 +16,8 @@ class CheckIsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && !Auth::user()->isAdmin()) {
-            return redirect()->route('home');
+        if (auth()->check() && !auth()->user()->isAdmin()) {
+            return redirect()->route(RouteServiceProvider::HOME);
         }
 
         return $next($request);

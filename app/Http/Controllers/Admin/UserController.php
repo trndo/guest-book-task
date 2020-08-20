@@ -6,19 +6,35 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\UserService;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
-    public function __construct()
+    /**
+     * @var UserService
+     */
+    private $userService;
+
+    /**
+     * UserController constructor.
+     * @param UserService $userService
+     */
+    public function __construct(UserService $userService)
     {
-        $this->middleware('check.is_admin');
+        $this->userService = $userService;
     }
 
-    public function ban(User $user)
+    /**
+     * Toggle ban for user
+     *
+     * @param User $user
+     * @return RedirectResponse
+     */
+    public function toggleBan(User $user): RedirectResponse
     {
-        $user->is_banned = !$user->is_banned;
-        $user->save();
+        $this->userService->updateIsBanned($user);
 
-        return redirect(route('home'));
+        return redirect()->route('home');
     }
 }

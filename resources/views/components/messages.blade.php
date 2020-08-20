@@ -1,15 +1,15 @@
 @forelse($messages as $message)
     <div class="card mt-5">
         <h5 class="card-header">
-            <a href="{{ route('show.user', $message->user->id) }}">{{ $message->user->name }}</a>
+            <a href="{{ route('user.show', $message->user->id) }}">{{ $message->user->name }}</a>
         </h5>
         <div class="card-body">
             <h5 class="card-title">{{ $message->body }}</h5>
             <p class="card-text">{{ $message->created_at }}</p>
         </div>
         @auth()
-            @if(Auth::user()->isAdmin())
-                <form action="{{ route('delete.message', $message->id) }}" method="POST">
+            @if(auth()->user()->isAdmin())
+                <form action="{{ route('admin.message.destroy', $message->id) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <input class="btn btn-default" type="submit" value="Delete" />

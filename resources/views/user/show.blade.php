@@ -12,11 +12,11 @@
             </div>
         </div>
         @auth()
-            @if(Auth::user()->isAdmin())
-                <form action="{{ route('ban.user', $user->id) }}" method="POST">
+            @if(auth()->user()->isAdmin())
+                <form action="{{ route('admin.user.toggleBan', $user->id) }}" method="POST">
                     @method('PATCH')
                     @csrf
-                    <input class="btn btn-default" type="submit" value="Ban/Unban" />
+                    <input class="btn btn-default" type="submit" value="{{ $user->is_admin ? 'Unban' : 'Ban' }}" />
                 </form>
             @endif
         @endauth

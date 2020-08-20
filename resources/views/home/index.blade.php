@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @auth()
-                @if(Auth::user()->is_banned)
+                @if(auth()->user()->is_banned)
                     You are banned!
                 @endif
             @endauth

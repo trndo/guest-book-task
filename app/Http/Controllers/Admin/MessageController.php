@@ -6,18 +6,37 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+use App\Services\MessageService;
+use Illuminate\Http\RedirectResponse;
 
 class MessageController extends Controller
 {
-    public function __construct()
+    /**
+     * @var MessageService
+     */
+    private $messageService;
+
+    /**
+     * MessageController constructor.
+     * @param MessageService $messageService
+     */
+    public function __construct(MessageService $messageService)
     {
-        $this->middleware('check.is_admin');
+        $this->messageService = $messageService;
     }
 
-    public function destroy(Message $message)
+    /**
+     * Delete message action
+     *
+     * @param Message $message
+     * @param MessageService $messageService
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(Message $message): RedirectResponse
     {
-        $message->delete();
+        $this->messageService->delete($message);
 
-        return redirect(route('home'));
+        return redirect()->route('home');
     }
 }

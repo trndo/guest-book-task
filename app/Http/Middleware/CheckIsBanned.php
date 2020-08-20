@@ -16,7 +16,7 @@ class CheckIsBanned
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->is_banned) {
+        if (auth()->check() && auth()->user()->is_banned) {
             return redirect()->back();
         }
 

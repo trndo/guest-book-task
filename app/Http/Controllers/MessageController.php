@@ -6,24 +6,31 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMessageRequest;
 use App\Services\MessageService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\RedirectResponse;
 
 class MessageController extends Controller
 {
-    public function __construct()
+    /**
+     * @var MessageService
+     */
+    protected $messageService;
+
+    public function __construct(MessageService $messageService)
     {
-        $this->middleware('auth');
-        $this->middleware('check.is_banned');
+        $this->messageService = $messageService;
     }
 
-    public function store(
-        StoreMessageRequest $messageRequest,
-        MessageService $messageService
-    ) {
-        $user = Auth::user();
-        $messageService->create($messageRequest->validated(), $user);
+    /**
+     * Save message after validation
+     *
+     * @param StoreMessageRequest $messageRequest
+     * @return RedirectResponse
+     */
+    public function store(StoreMessageRequest $messageRequest): RedirectResponse
+    {
+        $user = auth()->user();
+        $this->messageService->create($messageRequest->validated(), $user);
 
-        return redirect(route('home'));
+        return redirect()->route('home');
     }
 }

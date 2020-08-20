@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Services\MessageService;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
-     *
-     * @param MessageService $messageService
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @var MessageService
      */
-    public function index(MessageService $messageService)
+    private $messageService;
+
+    public function __construct(MessageService $messageService)
     {
-        $messages = $messageService->getAll();
+        $this->messageService = $messageService;
+    }
+
+    /**
+     * Show all messages on homepage
+     *
+     * @return View
+     */
+    public function index(): View
+    {
+        $messages = $this->messageService->getAll();
 
         return view('home.index', [
             'messages' => $messages
