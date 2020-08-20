@@ -45,7 +45,7 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
-    public function messages()
+    public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
     }
@@ -53,9 +53,21 @@ class User extends Authenticatable
     /**
      * @return BelongsToMany
      */
-    public function roles()
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * Check if user is admin
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->roles->pluck('name')->contains(
+            Role::DEFAULT_ADMIN_ROLE_NAME
+        );
     }
 
 }

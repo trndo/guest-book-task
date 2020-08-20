@@ -13,12 +13,10 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        $randomUser = User::inRandomOrder()->first();
-
-        factory(Message::class, 30)->create()
-            ->each(function ($message) use ($randomUser) {
-                $message->user()->associate($randomUser);
-                $message->save();
+        factory(Message::class, 30)->create()->each(function ($message) {
+            $randomUser = User::inRandomOrder()->first();
+            $message->user()->associate($randomUser);
+            $message->save();
         });
     }
 }

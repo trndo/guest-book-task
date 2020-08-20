@@ -1,11 +1,14 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+
+use App\Models\User;
 use App\Services\MessageService;
 use Illuminate\View\View;
 
-class HomeController extends Controller
+class UserController extends Controller
 {
     /**
      * @var MessageService
@@ -18,15 +21,17 @@ class HomeController extends Controller
     }
 
     /**
-     * Show all messages on homepage
+     * Show user profile with all messages
      *
-     * @return View
+     * @param User $user
+     * @return \Illuminate\View\View
      */
-    public function index(): View
+    public function show(User $user): View
     {
-        $messages = $this->messageService->getAll();
+        $messages = $this->messageService->getByUser($user);
 
-        return view('home.index', [
+        return view('user.show', [
+            'user' => $user,
             'messages' => $messages
         ]);
     }

@@ -12,12 +12,13 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $adminRole = new Role();
-        $adminRole->name = Role::DEFAULT_ADMIN_ROLE_NAME;
-        $adminRole->save();
+        $roleNames = [
+            Role::DEFAULT_ADMIN_ROLE_NAME,
+            Role::DEFAULT_USER_ROLE_NAME
+        ];
 
-        $userRole = new Role();
-        $userRole->name = Role::DEFAULT_USER_ROLE_NAME;
-        $userRole->save();
+        foreach ($roleNames as $roleName) {
+            factory(Role::class)->create(['name' => $roleName]);
+        }
     }
 }

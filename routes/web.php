@@ -13,10 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::middleware(['check.is_admin'])->namespace('Admin')->prefix('admin')
+    ->group(function () {
+        Route::delete('messages/{message}', 'MessageController@destroy')
+            ->name('admin.message.destroy');
+
+        Route::patch('users/{user}', 'UserController@toggleBan')
+            ->name('admin.user.toggleBan');
+});
+
+Route::get('/users/{user}', 'UserController@show')->name('user.show');
+
+Route::middleware(['auth','check.is_banned'])->post('/messages', 'MessageController@store')
+    ->name('message.store');
