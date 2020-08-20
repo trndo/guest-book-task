@@ -22,5 +22,6 @@
         <h5 class="card-header">No messages</h5>
     </div>
 @endforelse
+<br>
 {{ $messages->links() }}
 

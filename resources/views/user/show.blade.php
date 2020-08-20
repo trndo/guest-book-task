@@ -16,7 +16,7 @@
                 <form action="{{ route('admin.user.toggleBan', $user->id) }}" method="POST">
                     @method('PATCH')
                     @csrf
-                    <input class="btn btn-default" type="submit" value="{{ $user->is_admin ? 'Unban' : 'Ban' }}" />
+                    <input class="btn btn-primary" type="submit" value="{{ $user->is_admin ? 'Unban' : 'Ban' }}" />
                 </form>
             @endif
         @endauth
