@@ -29,7 +29,6 @@ class MessageController extends Controller
      * Delete message action
      *
      * @param Message $message
-     * @param MessageService $messageService
      * @return RedirectResponse
      * @throws \Exception
      */

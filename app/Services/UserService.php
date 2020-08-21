@@ -18,7 +18,7 @@ class UserService
         $this->roleService = $roleService;
     }
 
-    public function create(array $validatedData)
+    public function create(array $validatedData): User
     {
         $userRole = $this->roleService->getRoleByName(
             Role::DEFAULT_USER_ROLE_NAME
